@@ -6,6 +6,7 @@ Mancala is a 2 person game which uses a rectangular board with 12 small pods on 
 ![Mancala Wireframe](https://i.imgur.com/5LvCBOr.jpg "Mancala Wireframe")
 
 
+## Pseudocode
 1) Define required constants
     1. Define who the players are -> player 1 and player 2.  Player 1 will have one side while Player 2 has the other side.
 
