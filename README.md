@@ -7,12 +7,13 @@ Mancala is a 2 person game which uses a rectangular board with 12 small pods on 
 
 
 ## Pseudocode
-1. Define required constants
+
+```1. Define required constants
     1. Define who the players are -> player 1 and player 2.  Player 1 will have one side while Player 2 has the other side.
 
 2. Define required variables used to track the state of the game
-    1. Define a board array showing each of the spots on the board (12 small pods and 2 big pods)
-        => will be two arrays inside an array which go from 0-6 representing all 7 of each players spots
+    2.1 Define a board array showing each of the spots on the board (12 small pods and 2 big pods)
+        2.1.1 Create object literal for each position on the  
     2. Use turn variable to decide whose turn it is
     3. Create winner variable to show if there is a winner, tie, or game is still in play
 
@@ -49,5 +50,4 @@ Mancala is a 2 person game which uses a rectangular board with 12 small pods on 
 
 
 6. Handle a player clicking the replay button
-    1.  Re-initialize the board and re-render the game
-
+    1.  Re-initialize the board and re-render the game ```
