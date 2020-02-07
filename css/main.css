@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+header {
+    margin: 10px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(12, 50px);
+    grid-template-rows: 5px, 5px;
+    margin: 0 auto;
+    justify-items: center;
+    width: 800px;
+    height: 250px;
+    background-color: red;
+    border-radius: 5%;
+    padding: 5px;
+}
+
+.pod {
+    height: 30px;
+    width: 30px;
+}
+
+#player-one {
+    align-items: start;
+}
+
+#player-two {
+    align-items: end;
+}
