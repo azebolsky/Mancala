@@ -15,7 +15,7 @@ The game will end when one player does not have any more marbles in their small 
 
 ```1. Define required constants
     1. Define who the players are -> player 1 and player 2.  Player 1 will have one side while Player 2 has the other side.
-        a. Player 1 represented by 1, Player 2 represented by -1, and empty represented by null.
+        a. Player 1 represented by 1, Player 2 represented by -1, and empty represented by null. Mancala represented by m1 and m2.
 
 2. Define required variables used to track the state of the game
     2.1 Define a board showing each of the spots on the board (12 small pods and 2 mancalas)

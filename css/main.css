@@ -3,36 +3,59 @@
     margin: 0;
 }
 
-h1, h3 {
+main {
+    height: 100vh;
+    display: flex;
+    background-color: rgb(92, 92, 117);
+    justify-content: center;
+    align-items: center;
+}
+
+body {
     text-align: center;
+    font-family: helvetica;
 }
 
 header {
-    margin: 10px;
+    background-color: chocolate;
+    border-bottom: 4px solid black;
+    width: 100%;
+    padding: 20px;
 }
 
 #board {
-    display: grid;
-    grid-template-columns: repeat(12, 50px);
-    grid-template-rows: 5px, 5px;
-    margin: 0 auto;
-    justify-items: center;
-    width: 800px;
-    height: 250px;
-    background-color: red;
-    border-radius: 5%;
-    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    width: 980px;
+    border: 2px solid black;
+    border-radius: 8%;
+    background-color: chocolate;
+    padding: 10px;
+}
+
+#player-one, #player-two {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .pod {
-    height: 30px;
-    width: 30px;
+    height: 140px;
+    width: 110px;
+    border: 2px solid rgb(100, 57, 31);
+    border-radius: 40%;
+    margin: 5px;
+    background-color: rgba(122, 83, 32, 0.6);
+    cursor: pointer;
+    outline: none;
 }
 
-#player-one {
-    align-items: start;
-}
-
-#player-two {
-    align-items: end;
+.mancala {
+    height: 300px;
+    width: 180px;
+    background-color: rgb(100, 57, 31);
+    border: 2px solid black;
+    border-radius: 30%;
 }
