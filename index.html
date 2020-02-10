@@ -11,29 +11,30 @@
 <body>
     <header>
         <h1>Mancala</h1>
-        <h3>Marbles and Wood, let's go!</h3>
+        <h3 id="message">Marbles and Wood, let's go!</h3>
     </header>
     <main>
         <div id="board">
-            <div class="mancala"></div>
+            <div class="mancala" data-index="0"></div>
             <div id="player-one">
-                <div data-index="0" class="pod"></div>
                 <div data-index="1" class="pod"></div>
-                <div data-index="2" class="pod"> </div>
-                <div data-index="3" class="pod"></div>
+                <div data-index="2" class="pod"></div>
+                <div data-index="3" class="pod"> </div>
                 <div data-index="4" class="pod"></div>
                 <div data-index="5" class="pod"></div>
+                <div data-index="6" class="pod"></div>
             </div>
             <div id="player-two">
-                <div data-index="6" class="pod"></div>
                 <div data-index="7" class="pod"></div>
                 <div data-index="8" class="pod"></div>
                 <div data-index="9" class="pod"></div>
                 <div data-index="10" class="pod"></div>
                 <div data-index="11" class="pod"></div>
+                <div data-index="12" class="pod"></div>
             </div>
-            <div class="mancala"></div>
+            <div class="mancala" data-index="13"></div>
         </div>
     </main>
+    <button id="restart-btn">Restart Game</button>
 </body>
 </html>
