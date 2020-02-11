@@ -4,6 +4,8 @@ const KEY = {
     '-1': 'player 2',
     null: ''
 };  
+const marbleArray = ['M1', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'M2'];
+const MARBLE_SRC = 'https://i.imgur.com/bwgAbPE.png'; 
 
 /*----- **************** app's state (variables) **************** -----*/
 let turn;
@@ -33,16 +35,13 @@ while(counter !== 0) {
 
 /*----- ************* cached element references *************** -----*/
 const messageEl = document.getElementById('message');
-const boardEls = document.getElementById('m1');
+const boardEls = document.querySelector('.pod');
 const mancalaEls = document.getElementById('mancala');
 const marbleImg = document.createElement('img');
 
-const marbleArray = ['M1', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'M2'];
-const MARBLE_SRC = 'https://i.imgur.com/bwgAbPE.png';  // move this to your constants above
-
 
 /*----- ***************  event listeners ***************** -----*/
-document.getElementById('board').addEventListener('click', podClick);
+document.getElementById('all-players').addEventListener('click', podClick);
 document.getElementById('restart-btn').addEventListener('click', init);
 
 /*----- functions -----*/
@@ -50,75 +49,73 @@ init();
 
 // if pod is clicked on, we want to incremement the next pod by 1
 
+// board = [0, 4, 4, 4, 4, 4, 4, 
+//             4, 4, 4, 4, 4, 4, 0];
+
 function podClick(evt) {
     // shows corresponding data index that was clicked
-    let position = evt.target.dataset.position;
-    console.log(`${position} is the position`);
-    // below changes whatever was clicked to 0 as all marbles went into the next pods
-    // let currPosition = board[position];
-    //     for (i=location; i>0; i--) {
-    //         console.log(`${position} is the current spot on the board`);
-    //     position++;
-    //     board[position]++;
-    //     currPosition--;
-    //     };
-    // board.position = currPosition;
-    // turn *= -1;
-}
-
-// function render() {
-//     for (let marble in board) {
-//         console.log(board[marble]);
-//         marbleImg.src = 'https://i.imgur.com/bwgAbPE.png';
-//         for (let i=0; i<marbleArray.length; i++) {
-//             document.getElementById(`${marbleArray[i]}`).appendChild(marbleImg);
-//         }
-//     };
-// };
+    let podId = evt.target.id;
+    console.log(podId);
+    if(!podId) return;
+    let nextPodId = podId;
+    for (let i = 0; i < board[podId]; i++) {
+        board[nextPodId]++;
+        if(nextPodId > -1) {
+            nextPodId-- 
+        } else {
+            let nextPodId2 = nextPodId + 12
+        }
+        //  if (podId === 0) {
+        //     nextPodId = 7; 
+        //     board[nextPodId]++;
+        //     nextPodId--;
+        // } else if (podId === 13) {
+        //     nextPodId = 1;
+        //     board[nextPodId]++;
+        //     nextPodId--;
+        // } else {
+        //     console.log('line 73')
+        //     board[nextPodId]++;
+        //     nextPodId--;
+        // } 
+    }
+    board[podId] = 0;
+    // let currPosition = board[podId];
+    // let pickedUpMarbles = [...currPosition];
+    // board[podId] = [];
+    // console.log(pickedUpMarbles)
+    winner = checkWinner();
+    render();
+};
 
 function render() {
     for (let marble in board) {
-      console.log(marble)
-      let el = document.getElementById(marble);
-      el.innerHTML = '';  // clear previous content
-      for (let i = 0; i < board[marble].length; i++) {
-        el.innerHTML += `<img src="${MARBLE_SRC}" alt="marble">`;
-      }
+        console.log(`${marble} and ${board[marble]}`);
+        let el = document.getElementById(marble);
+        el.innerHTML = '';  // clear previous content
+        for (let i = 0; i < board[marble]; i++) {
+            el.innerHTML += `<img src="${MARBLE_SRC}" alt="marble">`;
+        };
     };
-  };
+    // if (!winner) {
+    //     messageEl.textContent = `It is ${KEY[turn]} turn!`;
+    // } else if (winner && (board['M1'] === board['M2'])) {
+    //     messageEl.textContent = `Looks like we have a tie! Play again and settle the score...`;
+    // } else {
+    //     messageEl.textContent = `${KEY[turn]} is the winner!`;
+    // }
+};
 
 function checkWinner() {
-    for (let prop in board) {
-        if (a1 === 0 && a2 === 0 && a3 === 0 && a4 === 0 && a5 === 0 && a6 === 0) {
-        }
-        if (b1 === 0 && b2 === 0 && b3 === 0 && b4 === 0 && b5 === 0 && b6 === 0) {
-        }
+    if (board[1] === 0 && board[2] === 0 && board[3] === 0 && board[4] === 0 && board[5] === 0 && board[6] === 0) {
+    }
+    if (board[7] === 0 && board[8] === 0 && board[9] === 0 && board[10] === 0 && board[11] === 0 && board[12] === 0) {
     }
 };
 
 function init() {
-    // reset the game board
-    // board = {
-    //     0: 0, 1: 4, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4,
-    //     7: 4, 8: 4, 9: 4, 10: 4, 11: 4, 12: 4, 13: 0
-    // };
-    board = {
-        "M1": [],
-        "A1": [],
-        "A2": [],
-        "A3": [],
-        "A4": [],
-        "A5": [],
-        "A6": [],
-        "B1": [],
-        "B2": [],
-        "B3": [],
-        "B4": [],
-        "B5": [],
-        "B6": [],
-        "M2": []
-    };
-    handlePlaceMarbles();
+    board = [0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0];
+    // handlePlaceMarbles();
     // decide whose turn it is
     turn = 1;
     // declare winner as null (false)
@@ -127,8 +124,8 @@ function init() {
     render();
 };
 
-function handlePlaceMarbles() {
-    gamePieces.forEach(function(gamePiece) {
-        board[gamePiece.position].push(gamePiece);
-    });
-}
+// function handlePlaceMarbles() {
+//     gamePieces.forEach(function(gamePiece) {
+//         board[gamePiece.position].push(gamePiece);
+//     });
+// }
