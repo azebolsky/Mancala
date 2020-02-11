@@ -37,7 +37,6 @@ header {
 
 #player-one, #player-two {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
 }
 
@@ -53,9 +52,22 @@ header {
 }
 
 .mancala {
+    /* display: flex;
+    flex-wrap: wrap; */
     height: 300px;
     width: 180px;
     background-color: rgb(100, 57, 31);
     border: 2px solid black;
     border-radius: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+img {
+    width: 20px;
+    height: 20px;
 }

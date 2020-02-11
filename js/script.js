@@ -3,16 +3,12 @@ const KEY = {
     '1': 'player 1',
     '-1': 'player 2',
     null: ''
-};
-const marbleImage = 'https://i.imgur.com/bwgAbPE.png';
+};  
 
 /*----- **************** app's state (variables) **************** -----*/
-let board = {
-    0: 0, 1: 4, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4,
-    7: 4, 8: 4, 9: 4, 10: 4, 11: 4, 12: 4, 13: 0
-};
 let turn;
 let winner;
+let board;
 
 // create marbles.  Creates 24 A marblers and 24 B marbles.
 class Marble {
@@ -37,8 +33,11 @@ while(counter !== 0) {
 
 /*----- ************* cached element references *************** -----*/
 const messageEl = document.getElementById('message');
-const boardEls = document.getElementById('pod');
+const boardEls = document.getElementById('m1');
 const mancalaEls = document.getElementById('mancala');
+const marbleImg = document.createElement('img');
+
+const marbleArray = ['M1', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'M2'];
 
 
 /*----- ***************  event listeners ***************** -----*/
@@ -52,32 +51,28 @@ init();
 
 function podClick(evt) {
     // shows corresponding data index that was clicked
-    let index = evt.target.dataset.index;
-    console.log(`${index} and ${board[index]}`);
+    let position = evt.target.dataset.position;
+    console.log(`${position} is the position`);
     // below changes whatever was clicked to 0 as all marbles went into the next pods
-    let currIndex = board[index];
-    for (i=board[index]; i>0; i--) {
-        console.log(`${index} is the current spot on the board`);
-        index++;
-        board[index]++;
-        currIndex--;
-    }
-    board[index] = currIndex;
-    turn *= -1;
-}
-
-function renderMarbles() {
-
+    // let currPosition = board[position];
+    //     for (i=location; i>0; i--) {
+    //         console.log(`${position} is the current spot on the board`);
+    //     position++;
+    //     board[position]++;
+    //     currPosition--;
+    //     };
+    // board.position = currPosition;
+    // turn *= -1;
 }
 
 function render() {
-    for (let marb in board) {
-        console.log(board[marb]);
-        while (board[marb] !== 0) {
-            boardEls.innerHTML(`<img src="${marbleImage}" alt="marble">`);
-            board[marb]--;
+    for (let marble in board) {
+        console.log(board[marble]);
+        marbleImg.src = 'https://i.imgur.com/bwgAbPE.png';
+        for (let i=0; i<marbleArray.length; i++) {
+            document.getElementById(`${marbleArray[i]}`).appendChild(marbleImg);
         }
-    }
+    };
 };
 
 function checkWinner() {
@@ -88,16 +83,40 @@ function checkWinner() {
         }
     }
 };
-board[3]
+
 function init() {
     // reset the game board
+    // board = {
+    //     0: 0, 1: 4, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4,
+    //     7: 4, 8: 4, 9: 4, 10: 4, 11: 4, 12: 4, 13: 0
+    // };
     board = {
-        0: 0, 1: 4, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4,
-        7: 4, 8: 4, 9: 4, 10: 4, 11: 4, 12: 4, 13: 0
+        "M1": [],
+        "A1": [],
+        "A2": [],
+        "A3": [],
+        "A4": [],
+        "A5": [],
+        "A6": [],
+        "B1": [],
+        "B2": [],
+        "B3": [],
+        "B4": [],
+        "B5": [],
+        "B6": [],
+        "M2": []
     };
+    handlePlaceMarbles();
     // decide whose turn it is
     turn = 1;
     // declare winner as null (false)
     winner = false;
     // visualize what the game board looks like
+    render();
 };
+
+function handlePlaceMarbles() {
+    gamePieces.forEach(function(gamePiece) {
+        board[gamePiece.position].push(gamePiece);
+    });
+}
