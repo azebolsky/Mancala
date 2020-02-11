@@ -49,6 +49,11 @@ header {
     background-color: rgba(122, 83, 32, 0.6);
     cursor: pointer;
     outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 25px;
 }
 
 .mancala {
@@ -64,8 +69,6 @@ header {
     align-items: center;
     flex-direction: column;
 }
-
-
 
 img {
     width: 20px;

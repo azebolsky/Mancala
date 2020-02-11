@@ -38,6 +38,7 @@ const mancalaEls = document.getElementById('mancala');
 const marbleImg = document.createElement('img');
 
 const marbleArray = ['M1', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'M2'];
+const MARBLE_SRC = 'https://i.imgur.com/bwgAbPE.png';  // move this to your constants above
 
 
 /*----- ***************  event listeners ***************** -----*/
@@ -65,15 +66,26 @@ function podClick(evt) {
     // turn *= -1;
 }
 
+// function render() {
+//     for (let marble in board) {
+//         console.log(board[marble]);
+//         marbleImg.src = 'https://i.imgur.com/bwgAbPE.png';
+//         for (let i=0; i<marbleArray.length; i++) {
+//             document.getElementById(`${marbleArray[i]}`).appendChild(marbleImg);
+//         }
+//     };
+// };
+
 function render() {
     for (let marble in board) {
-        console.log(board[marble]);
-        marbleImg.src = 'https://i.imgur.com/bwgAbPE.png';
-        for (let i=0; i<marbleArray.length; i++) {
-            document.getElementById(`${marbleArray[i]}`).appendChild(marbleImg);
-        }
+      console.log(marble)
+      let el = document.getElementById(marble);
+      el.innerHTML = '';  // clear previous content
+      for (let i = 0; i < board[marble].length; i++) {
+        el.innerHTML += `<img src="${MARBLE_SRC}" alt="marble">`;
+      }
     };
-};
+  };
 
 function checkWinner() {
     for (let prop in board) {
