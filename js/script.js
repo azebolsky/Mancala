@@ -81,18 +81,21 @@ function podClick(evt) {
             turn*=-1;
         }
     }
-    // whoseTurn();
     winner = checkWinner();
     // switch turn unless last marble in curPodCount ends in a mancala
     render();
 }
 
-function whoseTurn() {
+function turnBlock() {
     // prevent turn 1 (player 1) from clicking on turn -1's (player 2) side and viceversa
     if (turn = 1) {
-        playerTwoTurn.style.pointerevents = 'none';
+        playerTwoTurn.forEach(function(p2) {
+            p2.style.pointerEvents = 'none';
+        });
     } else if (turn = -1) {
-        playerOneTurn.style.pointerevents = 'none';
+        playerOneTurn.forEach(function(p1) {
+            p1.style.pointerEvents = 'none';
+        });
     }
 }
 
@@ -104,6 +107,7 @@ function render() {
             el.innerHTML += `<img src="${MARBLE_SRC}" alt="marble">`;
         };
     };
+    turnBlock();
     if (!winner) {
         messageEl.textContent = `It is ${KEY[turn]}'s turn!`;
     } else if (board[6] === board[13]) {
