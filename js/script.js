@@ -26,7 +26,6 @@ document.getElementById('restart-btn').addEventListener('click', init);
 
 /*----- functions -----*/
 init();
-
 // if pod is clicked on, we want to incremement the next pod by 1
 
 function podClick(evt) {
@@ -36,38 +35,60 @@ function podClick(evt) {
     let curIndex = podId;
     let curPodCount = board[podId];
     for (let i = 0; i < board[podId]; i++) {
-        if (turn = 1) {
+        if (turn === 1) {
             if (curIndex === 13) {
                 curIndex = 0;
                 curPodCount--;
-        } 
-        if (turn = -1) {
+            } 
+        }
+        if (turn === -1) {
+            if ((board[podId] + podId) === 13) {
+                turn*=1;
+            } else {
+                turn*=-1;
+            }
             if (curIndex === 6) {
                 curIndex = 7;
                 curPodCount--;
             }
         }
-        }
+        // below will decrement the amount of marbles (curPodCount) each loop while increasing the board position (curIndex)
         if (curIndex === 13) {
             board[curIndex]++;
             curIndex = 0;
             curPodCount--;
-          } else {
+        } else {
               board[curIndex]++;
               curPodCount--;
               curIndex++;
-          }
+        }
     }
     board[podId] = 0;
+    if (turn === 1) {
+        console.log('hello');
+        if ((board[podId] + podId) === 6) {
+            console.log('line 70');
+            turn*=1;
+        } else {
+            console.log('line 73');
+            turn = 1 * -1;
+        }
+    }
+    if (turn === -1) {
+        if ((board[podId] + podId) === 13) {
+            turn*=1;
+        } else {
+            turn*=-1;
+        }
+    }
     // whoseTurn();
     winner = checkWinner();
-    turn*=-1;
+    // switch turn unless last marble in curPodCount ends in a mancala
     render();
 }
 
 function whoseTurn() {
-    // switch turn unless last marble in curPodCount ends in a mancala
-    // prevent turn 1 (player 1) from accessing mancala 2 and viceversa
+    // prevent turn 1 (player 1) from clicking on turn -1's (player 2) side and viceversa
     if (turn = 1) {
         playerTwoTurn.style.pointerevents = 'none';
     } else if (turn = -1) {
