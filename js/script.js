@@ -2,7 +2,6 @@
 const KEY = {
     '1': 'player 1',
     '-1': 'player 2',
-    null: ''
 };  
 const marbleArray = ['M1', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'M2'];
 const MARBLE_SRC = 'https://i.imgur.com/bwgAbPE.png'; 
@@ -12,32 +11,13 @@ let turn;
 let winner;
 let board;
 
-// create marbles.  Creates 24 A marblers and 24 B marbles.
-class Marble {
-    constructor(position) {
-        // *this is the object - Marble {}
-         this.position = position;
-    }
-}
-const gamePieces = [];
-let counter = 24;
-let position = 6;
-while(counter !== 0) {
-    // creates a new object
-    let marbleA = new Marble(`A${position}`);
-    let marbleB = new Marble(`B${position}`);
-    gamePieces.push(marbleA, marbleB)
-    position--;
-    if(position === 0) position = 6;
-    counter--;
-}
-
-
 /*----- ************* cached element references *************** -----*/
 const messageEl = document.getElementById('message');
 const boardEls = document.querySelector('.pod');
 const mancalaEls = document.getElementById('mancala');
 const marbleImg = document.createElement('img');
+const playerOneTurn = document.querySelectorAll('.p1');
+const playerTwoTurn = document.querySelectorAll('.p2');
 
 
 /*----- ***************  event listeners ***************** -----*/
@@ -49,73 +29,81 @@ init();
 
 // if pod is clicked on, we want to incremement the next pod by 1
 
-// board = [0, 4, 4, 4, 4, 4, 4, 
-//             4, 4, 4, 4, 4, 4, 0];
-
 function podClick(evt) {
     // shows corresponding data index that was clicked
     let podId = evt.target.id;
-    console.log(podId);
     if(!podId) return;
-    let nextPodId = podId;
+    let curIndex = podId;
+    let curPodCount = board[podId];
     for (let i = 0; i < board[podId]; i++) {
-        board[nextPodId]++;
-        if(nextPodId > -1) {
-            nextPodId-- 
-        } else {
-            let nextPodId2 = nextPodId + 12
+        if (turn = 1) {
+            if (curIndex === 13) {
+                curIndex = 0;
+                curPodCount--;
+        } 
+        if (turn = -1) {
+            if (curIndex === 6) {
+                curIndex = 7;
+                curPodCount--;
+            }
         }
-        //  if (podId === 0) {
-        //     nextPodId = 7; 
-        //     board[nextPodId]++;
-        //     nextPodId--;
-        // } else if (podId === 13) {
-        //     nextPodId = 1;
-        //     board[nextPodId]++;
-        //     nextPodId--;
-        // } else {
-        //     console.log('line 73')
-        //     board[nextPodId]++;
-        //     nextPodId--;
-        // } 
+        }
+        if (curIndex === 13) {
+            board[curIndex]++;
+            curIndex = 0;
+            curPodCount--;
+          } else {
+              board[curIndex]++;
+              curPodCount--;
+              curIndex++;
+          }
     }
     board[podId] = 0;
-    // let currPosition = board[podId];
-    // let pickedUpMarbles = [...currPosition];
-    // board[podId] = [];
-    // console.log(pickedUpMarbles)
+    // whoseTurn();
     winner = checkWinner();
+    turn*=-1;
     render();
-};
+}
+
+function whoseTurn() {
+    // switch turn unless last marble in curPodCount ends in a mancala
+    // prevent turn 1 (player 1) from accessing mancala 2 and viceversa
+    if (turn = 1) {
+        playerTwoTurn.style.pointerevents = 'none';
+    } else if (turn = -1) {
+        playerOneTurn.style.pointerevents = 'none';
+    }
+}
 
 function render() {
     for (let marble in board) {
-        console.log(`${marble} and ${board[marble]}`);
         let el = document.getElementById(marble);
         el.innerHTML = '';  // clear previous content
         for (let i = 0; i < board[marble]; i++) {
             el.innerHTML += `<img src="${MARBLE_SRC}" alt="marble">`;
         };
     };
-    // if (!winner) {
-    //     messageEl.textContent = `It is ${KEY[turn]} turn!`;
-    // } else if (winner && (board['M1'] === board['M2'])) {
-    //     messageEl.textContent = `Looks like we have a tie! Play again and settle the score...`;
-    // } else {
-    //     messageEl.textContent = `${KEY[turn]} is the winner!`;
-    // }
+    if (!winner) {
+        messageEl.textContent = `It is ${KEY[turn]}'s turn!`;
+    } else if (board[6] === board[13]) {
+        messageEl.textContent = `Looks like we have a tie! Play again and settle the score...`;
+    } else if (board[6] > board[13]){
+        messageEl.textContent = `With ${board[6]} to ${board[13]}, player 1 is the winner!`;
+    } else if (board[6] < board[13]) {
+        messageEl.textContent = `With ${board[13]} to ${board[6]}, player 1 is the winner!`;
+    }
 };
 
+
 function checkWinner() {
-    if (board[1] === 0 && board[2] === 0 && board[3] === 0 && board[4] === 0 && board[5] === 0 && board[6] === 0) {
+    if (board[0] === 0 && board[1] === 0 && board[2] === 0 && board[3] === 0 && board[4] === 0 && board[5] === 0) {
     }
     if (board[7] === 0 && board[8] === 0 && board[9] === 0 && board[10] === 0 && board[11] === 0 && board[12] === 0) {
     }
 };
 
 function init() {
-    board = [0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0];
-    // handlePlaceMarbles();
+    board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0];
     // decide whose turn it is
     turn = 1;
     // declare winner as null (false)
@@ -123,9 +111,3 @@ function init() {
     // visualize what the game board looks like
     render();
 };
-
-// function handlePlaceMarbles() {
-//     gamePieces.forEach(function(gamePiece) {
-//         board[gamePiece.position].push(gamePiece);
-//     });
-// }

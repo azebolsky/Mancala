@@ -35,6 +35,10 @@ header {
     padding: 10px;
 }
 
+#all-players {
+    pointer-events: none;
+}
+
 #player-one, #player-two {
     display: flex;
     justify-content: space-around;
@@ -47,18 +51,17 @@ header {
     border-radius: 40%;
     margin: 5px;
     background-color: rgba(122, 83, 32, 0.6);
-    cursor: pointer;
     outline: none;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     padding: 25px;
+    cursor: pointer;
+    pointer-events: all;
 }
 
 .mancala {
-    /* display: flex;
-    flex-wrap: wrap; */
     height: 300px;
     width: 180px;
     background-color: rgb(100, 57, 31);
@@ -73,4 +76,5 @@ header {
 img {
     width: 25px;
     height: 25px;
+    pointer-events: none;
 }
