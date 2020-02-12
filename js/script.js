@@ -26,7 +26,6 @@ document.getElementById('restart-btn').addEventListener('click', init);
 
 /*----- functions -----*/
 init();
-// if pod is clicked on, we want to incremement the next pod by 1
 
 function podClick(evt) {
     // shows corresponding data index that was clicked
@@ -64,6 +63,8 @@ function podClick(evt) {
         }
     }
     board[podId] = 0;
+    // figure out if last marble landed in empty pod and other player has marbles on corresponding side
+    // if yes, can move marble in last pod landed and add opponents corresponding pod's marbles
     if (turn === 1) {
         console.log('hello');
         if ((board[podId] + podId) === 6) {
@@ -71,7 +72,7 @@ function podClick(evt) {
             turn*=1;
         } else {
             console.log('line 73');
-            turn = 1 * -1;
+            turn*=-1;
         }
     }
     if (turn === -1) {
@@ -86,20 +87,8 @@ function podClick(evt) {
     render();
 }
 
-function turnBlock() {
-    // prevent turn 1 (player 1) from clicking on turn -1's (player 2) side and viceversa
-    if (turn = 1) {
-        playerTwoTurn.forEach(function(p2) {
-            p2.style.pointerEvents = 'none';
-        });
-    } else if (turn = -1) {
-        playerOneTurn.forEach(function(p1) {
-            p1.style.pointerEvents = 'none';
-        });
-    }
-}
-
 function render() {
+    turnBlock();
     for (let marble in board) {
         let el = document.getElementById(marble);
         el.innerHTML = '';  // clear previous content
@@ -107,7 +96,6 @@ function render() {
             el.innerHTML += `<img src="${MARBLE_SRC}" alt="marble">`;
         };
     };
-    turnBlock();
     if (!winner) {
         messageEl.textContent = `It is ${KEY[turn]}'s turn!`;
     } else if (board[6] === board[13]) {
@@ -115,15 +103,7 @@ function render() {
     } else if (board[6] > board[13]){
         messageEl.textContent = `With ${board[6]} to ${board[13]}, player 1 is the winner!`;
     } else if (board[6] < board[13]) {
-        messageEl.textContent = `With ${board[13]} to ${board[6]}, player 1 is the winner!`;
-    }
-};
-
-
-function checkWinner() {
-    if (board[0] === 0 && board[1] === 0 && board[2] === 0 && board[3] === 0 && board[4] === 0 && board[5] === 0) {
-    }
-    if (board[7] === 0 && board[8] === 0 && board[9] === 0 && board[10] === 0 && board[11] === 0 && board[12] === 0) {
+        messageEl.textContent = `With ${board[13]} to ${board[6]}, player 2 is the winner!`;
     }
 };
 
@@ -136,3 +116,23 @@ function init() {
     // visualize what the game board looks like
     render();
 };
+
+function checkWinner() {
+    if (board[0] === 0 && board[1] === 0 && board[2] === 0 && board[3] === 0 && board[4] === 0 && board[5] === 0) {
+    }
+    if (board[7] === 0 && board[8] === 0 && board[9] === 0 && board[10] === 0 && board[11] === 0 && board[12] === 0) {
+    }
+};
+
+function turnBlock() {
+    // prevent turn 1 (player 1) from clicking on turn -1's (player 2) side and viceversa
+    if (turn = 1) {
+        playerTwoTurn.forEach(function(p2) {
+            p2.style.pointerEvents = 'none';
+        });
+    } else if (turn = -1) {
+        playerOneTurn.forEach(function(p1) {
+            p1.style.pointerEvents = 'none';
+        });
+    }
+}
