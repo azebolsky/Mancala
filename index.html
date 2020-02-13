@@ -11,33 +11,35 @@
 <body>
     <header>
         <h1>Mancala</h1>
-        <h3 id="message">Lets Play!</h3>
     </header>
+    <section id="message-container">
+        <h1 id="message">Lets Play!</h1>
+    </section>
     <main>
         <div id="board">
             <div id="6" class="mancala"></div>
             <div id="all-players">
                 <div id="player-one">
-                    <div id="5" class="pod p1"></div>
-                    <div id="4" class="pod p1"></div>
-                    <div id="3" class="pod p1"></div>
-                    <div id="2" class="pod p1"></div>
-                    <div id="1" class="pod p1"></div>
-                    <div id="0" class="pod p1"></div>
+                    <div id="5" class="pod p1 a5"></div>
+                    <div id="4" class="pod p1 a4"></div>
+                    <div id="3" class="pod p1 a3"></div>
+                    <div id="2" class="pod p1 a2"></div>
+                    <div id="1" class="pod p1 a1"></div>
+                    <div id="0" class="pod p1 a0"></div>
                 </div>
                 <div id="player-two">
-                    <div id="7" class="pod p2"></div>
-                    <div id="8" class="pod p2"></div>
-                    <div id="9" class="pod p2"></div>
-                    <div id="10" class="pod p2"></div>
-                    <div id="11" class="pod p2"></div>
-                    <div id="12" class="pod p2"></div>
+                    <div id="7" class="pod p2 b7"></div>
+                    <div id="8" class="pod p2 b8"></div>
+                    <div id="9" class="pod p2 b9"></div>
+                    <div id="10" class="pod p2 b10"></div>
+                    <div id="11" class="pod p2 b11"></div>
+                    <div id="12" class="pod p2 b12"></div>
                 </div>
             </div>
             <div id="13" class="mancala"></div>
         </div> 
         </div>
+        <button id="restart-btn">Restart Game</button>
     </main>
-    <button id="restart-btn">Restart Game</button>
 </body>
 </html>
