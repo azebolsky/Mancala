@@ -17,6 +17,8 @@ const mancalaEls = document.getElementById('mancala');
 const marbleImg = document.createElement('img');
 const playerOneTurn = document.querySelectorAll('.p1');
 const playerTwoTurn = document.querySelectorAll('.p2');
+const scoreBoardPl1 = document.querySelector('#pl1');
+const scoreBoardPl2 = document.querySelector('#pl2');
 
 /*----- ***************  event listeners ***************** -----*/
 document.getElementById('all-players').addEventListener('click', podClick);
@@ -25,49 +27,7 @@ document.getElementById('restart-btn').addEventListener('click', init);
 /*----- functions -----*/
 init();
 
-function checkLastMarbleInMancala(position, val) {
-    while(val !== 0) {
-        val--
-        position++
-    }
-    console.log(position === 6 || position === 13)
-    return position === 6 || position === 13;
-}
 
-function checkLastMarbleToOpponentPod(position, val) {
-    if (turn === 1) {
-        while(val !== 0) {
-            val--
-            position++
-        }
-        if ((board[position] === 0) && (position !== 6) && (position !== 7) && (position !== 8) && (position !== 9) 
-                                    && (position !== 10) && (position !== 11) && (position !== 12) && (position !== 13)) {
-            let correspondingPod = 12 - position;
-            if (board[correspondingPod] > 0) {
-                board[position]-=1;
-                board[6]+=board[correspondingPod];
-                board[6]+=1;
-                board[correspondingPod] = 0;
-            }
-        }
-    }
-    if (turn === -1) {
-        while(val !== 0) {
-            val--
-            position++
-        }
-        if ((board[position] === 0) && (position !== 13) && (position !== 0) && (position !== 1) && (position !== 2)
-                                     && (position !== 3) && (position !== 4) && (position !== 5) && (position !== 6)) {
-            let correspondingPod = 12 - position;
-            if (board[correspondingPod] > 0) {
-                board[position]-=1;
-                board[13]+=board[correspondingPod];
-                board[13]+=1;
-                board[correspondingPod] = 0;
-            }
-        }
-    }
-}
 
 function podClick(evt) {
     // shows corresponding id that was clicked
@@ -112,6 +72,7 @@ function podClick(evt) {
 }
 
 function render() {
+    scoreBoard();
     for (let marble in board) {
         let el = document.getElementById(marble);
         el.innerHTML = '';  // clear previous content
@@ -183,6 +144,54 @@ function turnBlock() {
         for (let i = 7; i < (board.length - 1); i++) {
             if (board[i] === 0) {
                 document.querySelector(`.b${i}`).style.pointerEvents = 'none';
+            }
+        }
+    }
+}
+
+function scoreBoard() {
+    scoreBoardPl1.textContent = `Player 1:  ${board[6]}`;
+    scoreBoardPl2.textContent = `Player 2:  ${board[13]}`;
+}
+
+function checkLastMarbleInMancala(position, val) {
+    while(val !== 0) {
+        val--
+        position++
+    }
+    return position === 6 || position === 13;
+}
+
+function checkLastMarbleToOpponentPod(position, val) {
+    if (turn === 1) {
+        while(val !== 0) {
+            val--
+            position++
+        }
+        if ((board[position] === 0) && (position !== 6) && (position !== 7) && (position !== 8) && (position !== 9) 
+                                    && (position !== 10) && (position !== 11) && (position !== 12) && (position !== 13)) {
+            let correspondingPod = 12 - position;
+            if (board[correspondingPod] > 0) {
+                board[position]-=1;
+                board[6]+=board[correspondingPod];
+                board[6]+=1;
+                board[correspondingPod] = 0;
+            }
+        }
+    }
+    if (turn === -1) {
+        while(val !== 0) {
+            val--
+            position++
+        }
+        if ((board[position] === 0) && (position !== 13) && (position !== 0) && (position !== 1) && (position !== 2)
+                                     && (position !== 3) && (position !== 4) && (position !== 5) && (position !== 6)) {
+            let correspondingPod = 12 - position;
+            if (board[correspondingPod] > 0) {
+                board[position]-=1;
+                board[13]+=board[correspondingPod];
+                board[13]+=1;
+                board[correspondingPod] = 0;
             }
         }
     }

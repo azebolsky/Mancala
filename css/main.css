@@ -4,7 +4,7 @@
 }
 
 main {
-    height: 100vh;
+    height: 75vh;
     display: flex;
     background-color: rgb(92, 92, 117);
     justify-content: center;
@@ -23,7 +23,8 @@ header {
     border-bottom: 4px solid black;
     font-size: 20px;
     width: 100%;
-    padding: 20px;
+    height: 120px;
+    padding: 10px;
     background: url(https://i.imgur.com/ayf0nKg.jpg);
 }
 
@@ -46,12 +47,12 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 340px;
-    width: 1000px;
-    border: 2px solid black;
+    height: 370px;
+    width: 1015x;
+    border: 3px solid black;
     border-radius: 50px;
     background: url(https://i.imgur.com/ayf0nKg.jpg);
-    padding: 10px;
+    padding: 8px;
     margin: 10px;
 }
 
@@ -72,8 +73,8 @@ h3 {
 }
 
 .pod {
-    height: 155px;
-    width: 115px;
+    height: 170px;
+    width: 130px;
     border: 2px solid black;
     border-radius: 40%;
     margin: 5px;
@@ -82,15 +83,16 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    align-content: center;
     flex-wrap: wrap;
-    padding: 25px;
+    padding: 35px;
     cursor: pointer;
     pointer-events: all;
 }
 
 .mancala {
-    height: 320px;
-    width: 130px;
+    height: 340px;
+    width: 110px;
     background: url(https://i.imgur.com/3c1pCsV.jpg) no-repeat center top;
     border: 2px solid black;
     border-radius: 50px;
@@ -107,18 +109,21 @@ img {
 }
 
 button {
-    height: 100px;
-    width: 300px;
+    height: 70px;
+    width: 200px;
     border-radius: 25px;
-    font-size: 30px;
+    font-size: 25px;
     background-color: black;
     outline: none;
     cursor: pointer;
     color: chocolate;
+    margin-top: 10px;
+    border: 2px solid chocolate;
+}
+
+#restart-game {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    border: 2px solid chocolate;
 }
 
 button:hover {
@@ -128,13 +133,26 @@ button:hover {
 }
 
 #scoreboard {
-    border: 2px solid black;
+    border: 3px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    align-content: center;
-    width: 150px;
+    font-size: 20px;
+    width: 180px;
     height: 100px;
     margin-top: 10px;
+    margin-bottom: 10px;
+    background: url(https://i.imgur.com/ayf0nKg.jpg);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+h4 {
+    border-bottom-color: black;
+    text-decoration: underline;
+    font-size: 30px;
+}
+
+#pl1 {
+    padding: 2px;
 }
