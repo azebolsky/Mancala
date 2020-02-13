@@ -19,10 +19,12 @@ body {
 }
 
 header {
-    background-color: chocolate;
+    /* background-color: chocolate; */
     border-bottom: 4px solid black;
+    font-size: 20px;
     width: 100%;
     padding: 20px;
+    background: url(https://i.imgur.com/ayf0nKg.jpg);
 }
 
 h1 {
@@ -32,7 +34,7 @@ h1 {
 
 section {
     background-color: rgb(92, 92, 117);
-    color: rgb(206, 132, 79);
+    color: rgb(218, 186, 162);
     letter-spacing: 0.1em;
 }
 

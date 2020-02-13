@@ -35,11 +35,46 @@ function checkLastMarbleInMancala(position, val) {
     return position === 6 || position === 13;
 }
 
+function checkLastMarbleToOpponentPod(position, val) {
+    if (turn === 1) {
+        while(val !== 0) {
+            val--
+            position++
+        }
+        if ((board[position] === 0) && (position !== 6) && (position !== 7) && (position !== 8) && (position !== 9) 
+                                    && (position !== 10) && (position !== 11) && (position !== 12) && (position !== 13)) {
+            let correspondingPod = 12 - position;
+            if (board[correspondingPod] > 0) {
+                board[position]-=1;
+                board[6]+=board[correspondingPod];
+                board[6]+=1;
+                board[correspondingPod] = 0;
+            }
+        }
+    }
+    if (turn === -1) {
+        while(val !== 0) {
+            val--
+            position++
+        }
+        if ((board[position] === 0) && (position !== 13) && (position !== 0) && (position !== 1) && (position !== 2)
+                                     && (position !== 3) && (position !== 4) && (position !== 5) && (position !== 6)) {
+            let correspondingPod = 12 - position;
+            if (board[correspondingPod] > 0) {
+                board[position]-=1;
+                board[13]+=board[correspondingPod];
+                board[13]+=1;
+                board[correspondingPod] = 0;
+            }
+        }
+    }
+}
 
 function podClick(evt) {
-    // shows corresponding data index that was clicked
+    // shows corresponding id that was clicked
     let podId = evt.target.id;
     let persistTurn = checkLastMarbleInMancala(podId, board[podId])
+    let correspondingPodMarbles = checkLastMarbleToOpponentPod(podId, board[podId])
     if(!podId) return;
     let curIndex = podId;
     let curPodCount = board[podId];
@@ -76,8 +111,7 @@ function podClick(evt) {
         }
     }
     board[podId] = 0;
-    // figure out if last marble landed in empty pod and other player has marbles on corresponding side
-    // if yes, can move marble in last pod landed and add opponents corresponding pod's marbles
+    correspondingPodMarbles;
     if (!persistTurn) {
         turn*=-1;
     }
@@ -96,11 +130,14 @@ function render() {
     };
     if (!winner) {
         messageEl.textContent = `It is ${KEY[turn]}'s turn!`;
-    } else if (board[6] === board[13]) {
+    } 
+    if (winner && (board[6] === board[13])) {
         messageEl.textContent = 'Looks like we have a tie! Play again and settle the score...';
-    } else if (board[6] > board[13]){
+    } 
+    if (winner && (board[6] > board[13])){
         messageEl.textContent = `With ${board[6]} to ${board[13]}, player 1 is the winner!`;
-    } else if (board[6] < board[13]) {
+    } 
+    if (winner && (board[13] > board[6])) {
         messageEl.textContent = `With ${board[13]} to ${board[6]}, player 2 is the winner!`;
     }
     turnBlock();
@@ -129,13 +166,11 @@ function turnBlock() {
         playerOneTurn.forEach(function(p1) {
             p1.style.pointerEvents = '';
         });
-        board.forEach(function(b1) {
-            for (i = 0; i < board.length; i++) {
-                if (board[i] === 0) {
-                    document.querySelector(`.a${i}`).style.pointerEvents = 'none';
-                }
-            }
-        })
+        for (let i = 0; i < (board.length - 8); i++) {
+            if (board[i] === 0) {
+                document.querySelector(`.a${i}`).style.pointerEvents = 'none';
+            } 
+        };
     } else if (turn === -1) {
         playerOneTurn.forEach(function(p1) {
             p1.style.pointerEvents = 'none';
@@ -143,12 +178,10 @@ function turnBlock() {
         playerTwoTurn.forEach(function(p2) {
             p2.style.pointerEvents = '';
         });
-        board.forEach(function(b2) {
-            for (i = 0; i < board.length; i++) {
-                if (board[i] === 0) {
-                    document.querySelector(`.b${i}`).style.pointerEvents = 'none';
-                    }
+        for (i = 7; i < (board.length - 1); i++) {
+            if (board[i] === 0) {
+                document.querySelector(`.b${i}`).style.pointerEvents = 'none';
             }
-        })
+        }
     }
 }
