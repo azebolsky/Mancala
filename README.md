@@ -10,7 +10,11 @@ The game will end when one player does not have any more marbles in their small 
 ### Mancala Wireframe
 ![Mancala Wireframe](https://i.imgur.com/5LvCBOr.jpg "Mancala Wireframe")
 
+### Start of the game
+
 ![Mancala Start](https://i.imgur.com/WaNi45y.png "Mancala Start")
+
+### End of game showing a winner
 
 ![Tie Game](https://i.imgur.com/hMgFwj2.png "Winner Game")
 
