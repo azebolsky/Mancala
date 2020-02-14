@@ -27,8 +27,6 @@ document.getElementById('restart-btn').addEventListener('click', init);
 /*----- functions -----*/
 init();
 
-
-
 function podClick(evt) {
     // shows corresponding id that was clicked
     let podId = evt.target.id;
@@ -67,19 +65,30 @@ function podClick(evt) {
         turn*=-1;
     }
     winner = checkWinner();
-    // switch turn unless last marble in curPodCount ends in a mancala
     render();
 }
+
+function init() {
+    board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0];
+    turn = 1;
+    winner = false;
+    render();
+};
 
 function render() {
     scoreBoard();
     for (let marble in board) {
         let el = document.getElementById(marble);
-        el.innerHTML = '';  // clear previous content
+        el.innerHTML = '';
         for (let i = 0; i < board[marble]; i++) {
             el.innerHTML += `<img src="${MARBLE_SRC}" alt="marble">`;
         };
     };
+    winnerMessage();
+    turnBlock();
+};
+
+function winnerMessage() {
     if (!winner) {
         messageEl.textContent = `It's ${KEY[turn]}'s turn!`;
     } 
@@ -92,15 +101,7 @@ function render() {
     if (winner && (board[13] > board[6])) {
         messageEl.textContent = 'Player 2 is the winner!';
     }
-    turnBlock();
-};
-
-function init() {
-    board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0];
-    turn = 1;
-    winner = false;
-    render();
-};
+}
 
 function checkWinner() {
     if (board[0] === 0 && board[1] === 0 && board[2] === 0 && board[3] === 0 && board[4] === 0 && board[5] === 0) {

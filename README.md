@@ -1,4 +1,4 @@
-# Mancala...The Ultimate Marble Based Game
+# Mancala
 Mancala is a 2 person game which uses a rectangular board with 12 small pods on each long side and 2 large pods or "Mancalas" on the ends.  There are 48 total marbles which are evenly divided at the start of the game to 24 each player or 4 in each of the small pods.  Player 1 gets one side with 6 small pods and one Mancala on the end while player 2 gets the opposite small pods and Mancala.  The goal is to get as many marbles in your Mancala as possible and whoever has the most marbles in their Mancala at the end, wins.
 
 ## Game Play
@@ -9,6 +9,24 @@ The game will end when one player does not have any more marbles in their small 
 
 ### Mancala Wireframe
 ![Mancala Wireframe](https://i.imgur.com/5LvCBOr.jpg "Mancala Wireframe")
+
+![Mancala Start](https://i.imgur.com/WaNi45y.png "Mancala Start")
+
+![Tie Game](https://i.imgur.com/hMgFwj2.png "Winner Game")
+
+### Technologies Used
+
+Javascript, HTML, and CSS.
+
+### Getting Started
+
+
+
+### Next Steps (Icebox Items)
+
+* Add an alternate board.  Possibly one which looks like a yin yang.
+* Allow user to choose which player they want to be or have a randomized selection of which player goes first.
+* Add optional sounds for each pod click.
 
 
 ## Pseudocode
