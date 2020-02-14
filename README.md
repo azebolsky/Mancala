@@ -24,7 +24,7 @@ Javascript, HTML, and CSS.
 
 ### Getting Started
 
-
+![Mancala](https://azebolsky.github.io/Mancala/ "The marble game!") 
 
 ### Next Steps (Icebox Items)
 
