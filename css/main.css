@@ -19,7 +19,6 @@ body {
 
 header {
     border-bottom: 4px solid black;
-    font-size: 20px;
     display: flex;
     align-self: center;
     justify-content: center;
@@ -254,5 +253,9 @@ h4 {
     img {
         width: 8px;
         height: 8px;
+    }
+
+    h1 {
+        font-size: 45px;
     }
 }
