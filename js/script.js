@@ -129,9 +129,11 @@ function turnBlock() {
     if (turn === 1) {
         playerTwoTurn.forEach(function (p2) {
             p2.style.pointerEvents = 'none';
+            p2.style.border = '2px solid black';
         });
         playerOneTurn.forEach(function (p1) {
             p1.style.pointerEvents = '';
+            p1.style.border = '2px solid green';
         });
         for (let i = 0; i < (board.length - 8); i++) {
             if (board[i] === 0) {
@@ -141,9 +143,11 @@ function turnBlock() {
     } else if (turn === -1) {
         playerOneTurn.forEach(function (p1) {
             p1.style.pointerEvents = 'none';
+            p1.style.border = '2px solid black';
         });
         playerTwoTurn.forEach(function (p2) {
             p2.style.pointerEvents = '';
+            p2.style.border = '2px solid green';
         });
         for (let i = 7; i < (board.length - 1); i++) {
             if (board[i] === 0) {
